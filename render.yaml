@@ -1,0 +1,20 @@
+# render.yaml
+services:
+  - type: web
+    name: nawah-dashboard-events
+    env: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false   # أضف القيم من لوحة التحكم في Render
+      - key: PRIVATE_KEY
+        sync: false   # مفتاح التفاعل مع البلوكشين (ضعه من الإعدادات)
+      - key: API_TOKEN
+        sync: false   # رمز خاص إن أردت حماية الـ WebSocket
