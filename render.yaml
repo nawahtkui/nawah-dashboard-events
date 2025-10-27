@@ -1,20 +1,23 @@
-# render.yaml
+# Exported from Render on 2025-10-27T19:09:27Z
+version: "1"
 services:
-  - type: web
-    name: nawah-dashboard-events
-    env: node
-    plan: free
-    branch: main
-    buildCommand: npm install
-    startCommand: npm start
-    envVars:
-      - key: NODE_VERSION
-        value: 18
-      - key: PORT
-        value: 10000
-      - key: DATABASE_URL
-        sync: false   # أضف القيم من لوحة التحكم في Render
-      - key: PRIVATE_KEY
-        sync: false   # مفتاح التفاعل مع البلوكشين (ضعه من الإعدادات)
-      - key: API_TOKEN
-        sync: false   # رمز خاص إن أردت حماية الـ WebSocket
+- type: web
+  name: nawah-dashboard-events
+  runtime: node
+  repo: https://github.com/nawahtkui/nawah-dashboard-events
+  plan: free
+  envVars:
+  - key: API_TOKEN
+    sync: false
+  - key: PRIVATE_KEY
+    sync: false
+  - key: DATABASE_URL
+    sync: false
+  - key: PORT
+    sync: false
+  - key: NODE_VERSION
+    sync: false
+  region: oregon
+  buildCommand: npm install
+  startCommand: npm start
+  autoDeployTrigger: commit
